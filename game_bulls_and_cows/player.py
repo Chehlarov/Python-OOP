@@ -61,7 +61,7 @@ class Player:
             digits2.append(dig)
             num2 = num2 // 10
         b, c = 0, 0
-        for i in range(3):
+        for i in range(4):
             if digits1[i] == digits2[i]:
                 b += 1
             elif digits1[i] in digits2:

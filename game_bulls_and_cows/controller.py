@@ -24,6 +24,7 @@ class Controller:
             if feedback == (4, 0):
                 print(f"{player.name} wins!!!")
                 break
+            # print(player.possible_opponent_nums) #TODO debug only
             # the player must receive the feedback and make notes, used for next guesses
 
             # computer turn
@@ -33,4 +34,5 @@ class Controller:
             if feedback == (4, 0):
                 print(f"{computer.name} wins!!!")
                 break
+            print(computer.possible_opponent_nums) #TODO debug only
         print("END OF GAME")
