@@ -24,21 +24,16 @@ class Player:
         digits = set(digits)
         return len(digits) == 4
 
-    def make_guess(self):
-        num = random.choice(self.possible_opponent_nums)
+    def make_guess(self, value: int = None):
+        if value is None:
+            num = random.choice(self.possible_opponent_nums)
+        elif not self.is_valid_number(value):
+            raise ValueError("Numbers must be 4 digits with no duplicated digits!")
+        else:
+            num = value
         self.my_guesses.append(num)
-        print(f"{self.name}: I guess {num}")
-        # return num
 
-    def player_guess(self):
-        num = int(input(f"{self.name} please make a guess"))
-        self.my_guesses.append(num)
-        # return num
-
-    def receive_feedback(self, feedback: set):
-        if feedback == (4, 0):
-            print(f"I win with {len(self.my_guesses) + 1} guesses!")
-            return
+    def receive_feedback(self, feedback: tuple):
         new_possible_nums = []
         for num in self.possible_opponent_nums:
             if self.check_b_and_c(num, self.my_guesses[-1]) == feedback:
@@ -67,9 +62,3 @@ class Player:
             elif digits1[i] in digits2:
                 c += 1
         return b, c
-
-    def reply_to_suggestion(self, num):
-        b, c = self.check_b_and_c(num, self.secret_num)
-        print(f"{self.name}: You have {b} bulls and {c} cows")
-        return b, c
-    # def receive_player_feedback(self):
